@@ -1,0 +1,63 @@
+{% extends 'Base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card mb-6">
+                <h4 class="card-header">CREATE NEW TASK</h4>
+                <div class="form-container bg-light shadow p-3">
+                    <form method="post" action="{% url 'task_create' %}" class="row">
+                        {% csrf_token %}
+                        <div class="form-group col-md-6">
+                            <label for="task">Task:</label>
+                            <input type="text" class="form-control" id="task" name="name" required>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="priority">Priority:</label>
+                            <select class="form-control" id="priority" name="priority" required>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="task">Task Date:</label>
+                            <input type="date" class="form-control" id="task_date" name="task_date" required>
+                        </div>
+
+                        <div class="form-group col-md-12 text-center mt-2">
+                            <button type="submit" class="btn btn-primary">Save</button>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-6">
+                <h4 class="card-header">TASK TO BE COMPLETED</h4>
+                <br>
+                {% for i in task_detail %}
+                <div class="shadow card-body mb-6">
+                    <h5 class="card-title">Task Name: {{ i.name }}</h5>
+                    <p class="card-text">Priority: {{ i.priority }}</p>
+                    <p class="card-text">Task Date: {{ i.task_date }}</p>
+<!--                    <a href="#" class="btn btn-primary">Done</a>-->
+
+                    <!-- Add 'btn btn-success' class for the update button to make it green -->
+                    <button class="link-button btn btn-success" onclick="window.location='{% url 'task_update' id=i.id %}'">Update Task</button>
+
+                    <!-- Add 'btn btn-danger' class for the delete button to make it red -->
+                    <button class="link-button btn btn-danger" onclick="window.location='{% url 'task_delete' id=i.id %}'">Delete Task</button>
+
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

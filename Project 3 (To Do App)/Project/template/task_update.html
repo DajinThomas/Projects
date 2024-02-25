@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Movie Form</title>
+  <!-- Your additional head content here -->
+
+  <style>
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <label for="name">Title of Task:</label>
+  <input type="text" id="name" name="name" maxlength="100" required>
+  <br>
+
+<!--  <label for="priority">priority:</label>-->
+<!--  <input type="text" id="priority" name="priority" maxlength="50" required>-->
+<!--  <br>-->
+
+  <label for="task_date">Task Date:</label>
+  <input type="date" id="task_date" name="task_date" required>
+  <br>
+
+<!--  <label for="synopsis">Synopsis:</label>-->
+<!--  <textarea id="synopsis" name="synopsis" required></textarea>-->
+<!--  <br>-->
+
+<!--  <label for="image_url">Image File:</label>-->
+<!--  <input type="file" id="image_url" name="image_url" accept="image/*" required>-->
+<!--  <br>-->
+
+  <button type="submit">Submit</button>
+</form>
+
+{% if message %}
+  <p>{{ message }}</p>
+{% endif %}
+
+</body>
+</html>

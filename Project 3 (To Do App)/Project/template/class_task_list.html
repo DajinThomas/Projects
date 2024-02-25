@@ -1,0 +1,21 @@
+{% extends 'Base.html' %}
+{% block content %}
+    <div class="row">
+        {% for task in tasks %}
+            <div class="col-md-6">
+                <div class="card mb-6">
+                    <h4 class="card-header">TASKS TO BE COMPLETED</h4>
+                    <br>
+
+                    <div class="shadow card-body mb-6">
+                        <h5 class="card-title">Task Name: {{ task.name }}</h5>
+                        <p class="card-text">Priority: {{ task.priority }}</p>
+                        <p class="card-text">Task Date: {{ task.task_date }}</p>
+                        <button class="link-button btn btn-success" onclick="window.location='{% url 'task_update' id=task.id %}'">Update Task</button>
+                        <button class="link-button btn btn-danger" onclick="window.location='{% url 'task_delete' id=task.id %}'">Delete Task</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
